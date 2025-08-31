@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
-import { AddNumbers, SelectFile } from "../wailsjs/go/main/App";
+import { AddNumbers, SelectFile } from "../wailsjs/go/app/App";
 
 const num1 = ref(0);
 const num2 = ref(0);
