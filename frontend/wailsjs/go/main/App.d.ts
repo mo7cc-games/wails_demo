@@ -4,3 +4,5 @@
 export function AddNumbers(arg1:number,arg2:number):Promise<number>;
 
 export function Greet(arg1:string):Promise<string>;
+
+export function SelectFile():Promise<string>;

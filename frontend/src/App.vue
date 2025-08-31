@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
-import { AddNumbers } from "../wailsjs/go/main/App";
+import { AddNumbers, SelectFile } from "../wailsjs/go/main/App";
 
 const num1 = ref(0);
 const num2 = ref(0);
 const result = ref(0);
+
+const selectedFile = ref("");
 
 function calculate() {
   // 调用Go后端的AddNumbers方法
@@ -13,6 +15,18 @@ function calculate() {
     console.log("计算结果:", res);
     result.value = res;
   });
+}
+
+function selectFile() {
+  SelectFile()
+    .then((file) => {
+      console.log("选中的文件:", file);
+
+      selectedFile.value = file;
+    })
+    .catch((err) => {
+      console.error("选择文件出错:", err);
+    });
 }
 </script>
 
@@ -27,6 +41,12 @@ function calculate() {
     <input type="number" v-model="num2" />
     <button @click="calculate">计算</button>
     <p>结果: {{ result }}</p>
+  </div>
+
+  <div class="file-selector">
+    <h3>文件选择器</h3>
+    <button @click="selectFile">选择文件</button>
+    <p v-if="selectedFile">选中的文件: {{ selectedFile }}</p>
   </div>
 </template>
 

@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // App struct
@@ -29,4 +31,23 @@ func (a *App) Greet(name string) string {
 func (a *App) AddNumbers(x, y int) int {
 	fmt.Printf("打印结果 %d and %d\n", x, y)
 	return x + y
+}
+
+// 打开文件选择对话框
+func (a *App) SelectFile() (string, error) {
+	// 打开文件选择对话框
+	file, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
+		Title: "选择一个文件",
+		Filters: []runtime.FileFilter{
+			{
+				DisplayName: "文本文件 (*.txt)",
+				Pattern:     "*.txt",
+			},
+			{
+				DisplayName: "所有文件 (*.*)",
+				Pattern:     "*.*",
+			},
+		},
+	})
+	return file, err
 }
