@@ -44,7 +44,4 @@ package-lock.json
 
 .DS_Store
 
-
-frontend/wailsjs/
-
 package.json.md5
