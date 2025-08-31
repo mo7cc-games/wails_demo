@@ -18,6 +18,7 @@ func main() {
 	appInstance := app.NewApp()
 
 	// Create application with options
+	// demo https://wails.io/zh-Hans/docs/guides/application-development
 	err := wails.Run(&options.App{
 		Title:  "wails_demo",
 		Width:  1024,
@@ -35,3 +36,22 @@ func main() {
 		println("Error:", err.Error())
 	}
 }
+
+/*
+
+err := wails.Run(&options.App{
+	Title:             "My App",
+	Width:             800,
+	Height:            600,
+	OnStartup:  func(ctx context.Context){
+			app.SetContext(ctx)
+			otherStruct.SetContext(ctx)
+	},
+	OnShutdown: app.shutdown,
+	Bind: []interface{}{
+			app,
+			otherStruct
+	},
+})
+
+*/
